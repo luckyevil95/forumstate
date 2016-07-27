@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/img/
+RewriteCond %{REQUEST_URI} !^/assets/
+RewriteCond %{REQUEST_URI} !^/crons/
+RewriteRule .*? index.php

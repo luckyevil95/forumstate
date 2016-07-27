@@ -1,0 +1,50 @@
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+header {
+	height: 250px;
+    background-image: url(/img/header.jpg);
+    background-size: 100% 100%;
+}
+
+article {
+	background: rgba(251,206,103,0.2);
+}
+
+.topNavbar {
+	position: fixed;
+    width: 100%;
+	padding: 3px 0;
+    background: linear-gradient(to top, rgba(251,206,103,0.2), rgba(21,25,70,0.6));
+}
+
+.mainMenu {
+	display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.mainMenu > li {
+	list-style-type: none;
+	display: inline-block;
+	margin: 5px;
+    background: linear-gradient(to top, rgba(21,25,70,0.2), rgba(251,206,103,0.6));
+	font-weight: bold;
+	box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.mainMenu > li:hover {
+	box-shadow: 0 0 25px rgba(255,255,255,1);
+}
+
+.mainMenu > li > a {
+	padding: 12px 18px;
+	display: block;
+	color: white;
+	font-family: 'Bad Script', cursive;
+}
