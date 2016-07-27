@@ -17,7 +17,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="keywords" content="<?php echo $metaData["keywords"]; ?>"> 
 		<meta name="description" content="<?php echo $metaData["description"]; ?>">
-		<link href='https://fonts.googleapis.com/css?family=PT+Serif|Bad+Script&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Bad+Script|Andika&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 		<link href="/assets/css/style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>

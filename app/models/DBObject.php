@@ -14,9 +14,8 @@
 			
 			$this->dbConnection = $dbConnection;
 			$this->id = $id;
-			$this->table = "users";
 			
-			$this->objectInfo = $this->dbConnection->get("SELECT * FROM `" . $this->table . "` WHERE `id` = ':id'", [":id" => $this->id]);
+			$this->objectInfo = $this->dbConnection->get("SELECT * FROM `" . $this->table . "` WHERE `id` = ':id'", "singular", [":id" => $this->id]);
 		}
 		
 		public function getAttr($attr)
@@ -28,7 +27,7 @@
 		{
 			global $config;
 			
-			$this->dbConnection->set("UPDATE `" . $config["db"]["db"] .  "`.`" . $this->table . "` SET `" . $attr . "` = ':value' WHERE `" . $this->table . "`.`id` = ':id'", 
+			$this->dbConnection->set("UPDATE `" . $config["db"]["db"] .  "`.`" . $this->table . "` SET `" . $attr . "` = ':value' WHERE `" . $this->table . "`.`id` = ':id'",
 				[
 						":value" => $value,
 						":id" => $this->id

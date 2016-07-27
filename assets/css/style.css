@@ -14,6 +14,7 @@ header {
 
 article {
 	background: rgba(251,206,103,0.2);
+	display: flex;
 }
 
 .topNavbar {
@@ -47,4 +48,70 @@ article {
 	display: block;
 	color: white;
 	font-family: 'Bad Script', cursive;
+}
+
+.forumCategories {
+	margin: 25px auto;
+	width: 800px;
+}
+
+.forumCategory {
+	margin: 25px 0;
+	background: rgba(21,25,70,0.1);
+}
+
+.forumCategoryTitle {
+	background-image: url(/img/category.png);
+	width: 800px;
+    height: 100px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+	line-height: 73px;
+    margin-bottom: 10px;
+	font-family: 'Andika', sans-serif;
+}
+
+.forum {
+	display: flex;
+	border-bottom: 1px solid rgba(21,25,70,0.6);
+    margin-bottom: 5px;
+	background: linear-gradient(to top, rgba(21,25,70,0.3), transparent)
+}
+
+.forum:hover {
+	box-shadow: 0 0 20px rgba(251,206,103,0.75);
+	background: linear-gradient(to top, rgba(21,25,70,0.3), rgba(251,206,103,0.2));
+}
+
+.forumIcon {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.forumTitle {
+	float: left;
+	width: 300px;
+	padding-left: 5px;
+}
+
+.forumTitle > a {
+	display: block;
+	color: black;
+	line-height: 100px;
+}
+
+.forumCount {
+	float: left;
+	width: 200px;
+	padding-top: 30px;
+	line-height: 20px;
+}
+
+.forumLastPost {
+	float: left;
+	width: 200px;
+	padding-top: 30px;
+	line-height: 20px;
 }

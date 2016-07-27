@@ -7,6 +7,8 @@
 	{
 		public function __construct($id)
 		{
+			$this->table = "users";
+			
 			$this->initObject($id);
 		}
 	}

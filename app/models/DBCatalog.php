@@ -13,7 +13,7 @@
 		private $catalog;
 		private $limit;
 		
-		public function __construct($args)
+		public function __construct($args, $values = null)
 		{
 			global $dbConnection;
 			
@@ -28,16 +28,19 @@
 			else 
 				$this->numberPage = $args["number_page"];
 			
-			if ($this->pageCount == 0)
+			if ($this->pageCount == null)
 				$this->limit = "";
 			else
 				$this->limit = "LIMIT " . (($this->numberPage - 1) * $this->pageCount) . ", " . $this->pageCount . "";
-			echo "SELECT " . $columnsString . " FROM `" . $this->table . "` " . $this->condition . " " . $args["order"] . "";
-			if ($args["pagin"] == true)
-				$this->catalog = $this->dbConnection->get("SELECT " . $args["columns"] . " FROM `" . $this->table . "` " . $this->condition . " " . $args["order"] . " " . $this->limit . "");
-			else
-				$this->catalog = $this->dbConnection->get("SELECT " . $args["columns"] . " FROM `" . $this->table . "` " . $this->condition . " " . $args["order"] . "");
 			
+			if ($args["pagin"] == true)
+				$this->catalog = $this->dbConnection->get("SELECT " . $args["columns"] . " FROM `" . $this->table . "` " . $this->condition . " " . $args["order"] . " " . $this->limit . "", "plural", $values);
+			else
+				$this->catalog = $this->dbConnection->get("SELECT " . $args["columns"] . " FROM `" . $this->table . "` " . $this->condition . " " . $args["order"] . "", "plural", $values);
+		}
+		
+		public function getCatalog()
+		{
 			return $this->catalog;
 		}
 	}

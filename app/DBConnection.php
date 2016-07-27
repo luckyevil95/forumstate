@@ -18,11 +18,23 @@
 			}
 		}
 		
-		public function get($query, $args = null)
+		public function get($query, $count, $args = null)
 		{	
 			$query = $this->screening($query, $args);
 			
-			return mysqli_fetch_assoc(mysqli_query($this->CONNECT, $query));
+			if ($count == "singular")
+				return mysqli_fetch_assoc(mysqli_query($this->CONNECT, $query));
+			else
+			{
+				$mysqliQuery = mysqli_query($this->CONNECT, $query);
+				
+				while ($row = mysqli_fetch_assoc($mysqliQuery))
+				{
+					$queryArray[] = $row;
+				}
+				
+				return $queryArray;
+			}
 		}
 		
 		public function set($query, $args)
