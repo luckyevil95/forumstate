@@ -34,7 +34,7 @@
 					[
 						"table" => "forums",
 						"columns" => "`id`",
-						"condition" => "WHERE `category_id` = :category",
+						"condition" => "WHERE `category_id` = :category AND `parent_forum` is null",
 						"page_count" => null,
 						"order" => "ORDER BY `position` ASC",
 						"pagin" => false
