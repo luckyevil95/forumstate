@@ -17,8 +17,8 @@
 		{
 			$childrenForums = new DBCatalog(
 				[
-					"table" => "forums",
-					"columns" => "`id`",
+					"table" => $this->table,
+					"columns" => "`id`, `title`",
 					"condition" => "WHERE `parent_forum` = :parent_forum",
 					"page_count" => null,
 					"order" => "ORDER BY `position` ASC",
@@ -28,6 +28,17 @@
 					":parent_forum" => $this->getAttr("id")
 				]
 			);
+			
+			$childrenForumsCatalog = $childrenForums->getCatalog();
+			
+			return $childrenForumsCatalog;
+		}
+		
+		public function getParentForum()
+		{
+			$parentForum = $this->dbConnection->get("SELECT `id`, `title` FROM `" . $this->table . "` WHERE `id` = '" . $this->getAttr("parent_forum") . "'", "singular");
+			
+			return $parentForum;
 		}
 	}
 ?>
