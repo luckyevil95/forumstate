@@ -23,7 +23,7 @@
 					if ($k == 0)
 						$childrenForumsDiv[$i][$j] .= "<ul class='childrenForums'>";
 					
-					$childrenForumsDiv[$i][$j] .= "<li><a href='/forum/?id=" . $childrenForums[$k]["id"] . "'>" . $childrenForums[$k]["title"] . "</a></li>";
+					$childrenForumsDiv[$i][$j] .= "<li><a href='/forum/?id=" . $childrenForums[$k]->getAttr("id") . "'>" . $childrenForums[$k]->getAttr("title") . "</a></li>";
 					
 					if ($k == $countChildrenForums - 1)
 						$childrenForumsDiv[$i][$j] .= "</ul>";

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.7
+-- version 4.0.10.10
 -- http://www.phpmyadmin.net
 --
--- Хост: 176.106.197.212:3306
--- Время создания: Июл 29 2016 г., 01:17
--- Версия сервера: 5.5.50
--- Версия PHP: 5.5.37
+-- Хост: 127.0.0.1:3306
+-- Час створення: Лип 29 2016 р., 11:55
+-- Версія сервера: 5.5.45
+-- Версія PHP: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,27 +14,28 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `main`
+-- База даних: `main`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `categories`
+-- Структура таблиці `categories`
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` varchar(200) NOT NULL,
-  `position` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `categories`
+-- Дамп даних таблиці `categories`
 --
 
 INSERT INTO `categories` (`id`, `title`, `description`, `position`) VALUES
@@ -45,22 +46,25 @@ INSERT INTO `categories` (`id`, `title`, `description`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `forums`
+-- Структура таблиці `forums`
 --
 
 CREATE TABLE IF NOT EXISTS `forums` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `parent_forum` int(11) DEFAULT NULL,
   `title` varchar(100) NOT NULL,
   `description` varchar(200) NOT NULL,
   `keywords` varchar(200) NOT NULL,
   `icon` varchar(200) NOT NULL DEFAULT '/img/forum_icon.png',
-  `position` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_id` (`category_id`),
+  KEY `parent_forum` (`parent_forum`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп данных таблицы `forums`
+-- Дамп даних таблиці `forums`
 --
 
 INSERT INTO `forums` (`id`, `category_id`, `parent_forum`, `title`, `description`, `keywords`, `icon`, `position`) VALUES
@@ -75,25 +79,28 @@ INSERT INTO `forums` (`id`, `category_id`, `parent_forum`, `title`, `description
 (9, 2, NULL, 'Северная Атлантика', 'Северная Атлантика', 'Северная Атлантика', '/img/forum_icon.png', 2),
 (10, 2, NULL, 'Азия и Африка', 'Азия и Африка', 'Азия и Африка', '/img/forum_icon.png', 3),
 (11, 1, 1, 'Dota 2', 'Dota 2', 'Dota 2', '/img/forum_icon.png', 1),
-(12, 1, 1, 'League of Legends', 'League of Legends', 'League of Legends', '/img/forum_icon.png', 2);
+(12, 1, 11, 'League of Legends', 'League of Legends', 'League of Legends', '/img/forum_icon.png', 2);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `topics`
+-- Структура таблиці `topics`
 --
 
 CREATE TABLE IF NOT EXISTS `topics` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `forum_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `date_created` datetime NOT NULL,
-  `ip` varchar(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `ip` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `forum_id` (`forum_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп данных таблицы `topics`
+-- Дамп даних таблиці `topics`
 --
 
 INSERT INTO `topics` (`id`, `forum_id`, `user_id`, `title`, `date_created`, `ip`) VALUES
@@ -104,96 +111,41 @@ INSERT INTO `topics` (`id`, `forum_id`, `user_id`, `title`, `date_created`, `ip`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Структура таблиці `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(30) NOT NULL,
   `password` varchar(50) NOT NULL,
   `avatar` varchar(200) NOT NULL DEFAULT '/img/no_avatar.jpg',
   `money` int(11) NOT NULL DEFAULT '0',
   `date_registration` datetime NOT NULL,
   `date_last_visit` datetime NOT NULL,
-  `ip` varchar(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `ip` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `users`
+-- Дамп даних таблиці `users`
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `avatar`, `money`, `date_registration`, `date_last_visit`, `ip`) VALUES
 (1, 'Scorpion', '19951953', '/img/no_avatar.jpg', 0, '2016-07-26 21:58:03', '2016-07-26 21:58:19', '176.106.197.212');
 
 --
--- Индексы сохранённых таблиц
+-- Обмеження зовнішнього ключа збережених таблиць
 --
 
 --
--- Индексы таблицы `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `forums`
---
-ALTER TABLE `forums`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `category_id` (`category_id`),
-  ADD KEY `parent_forum` (`parent_forum`);
-
---
--- Индексы таблицы `topics`
---
-ALTER TABLE `topics`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `forum_id` (`forum_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Индексы таблицы `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT для таблицы `forums`
---
-ALTER TABLE `forums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT для таблицы `topics`
---
-ALTER TABLE `topics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT для таблицы `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- Ограничения внешнего ключа сохраненных таблиц
---
-
---
--- Ограничения внешнего ключа таблицы `forums`
+-- Обмеження зовнішнього ключа таблиці `forums`
 --
 ALTER TABLE `forums`
   ADD CONSTRAINT `forums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `forums_ibfk_2` FOREIGN KEY (`parent_forum`) REFERENCES `forums` (`id`);
 
 --
--- Ограничения внешнего ключа таблицы `topics`
+-- Обмеження зовнішнього ключа таблиці `topics`
 --
 ALTER TABLE `topics`
   ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`forum_id`) REFERENCES `forums` (`id`),

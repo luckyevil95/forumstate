@@ -13,15 +13,6 @@
 		{
 			$forum = new Forum($_GET["id"]);
 			
-			$childrenForums = $forum->getChildrenForums();
-			
-			$countChildrenForums = count($childrenForums);
-			
-			for ($i = 0; $i < $countChildrenForums; $i++)
-			{
-				$childrens[$i] = new Forum($childrenForums[$i]["id"]);
-			}
-			
 			$this->metaData =
 			[
 				"title" => $forum->getAttr("title"),
@@ -29,7 +20,7 @@
 				"description" => $forum->getAttr("description")
 			];
 			
-			$this->render("forum", $this->metaData, ["categories" => $categoriesCatalog, "forum" => $forum, "childrens" => $childrens]);
+			$this->render("forum", $this->metaData, ["categories" => $categoriesCatalog, "forum" => $forum]);
 		}
 	}
 ?>

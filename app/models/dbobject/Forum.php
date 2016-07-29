@@ -6,6 +6,9 @@
 
 	class Forum extends DBObject
 	{
+		private $childrens;
+		private $parents;
+
 		public function __construct($id)
 		{
 			$this->table = "forums";
@@ -18,7 +21,7 @@
 			$childrenForums = new DBCatalog(
 				[
 					"table" => $this->table,
-					"columns" => "`id`, `title`",
+					"columns" => "`id`",
 					"condition" => "WHERE `parent_forum` = :parent_forum",
 					"page_count" => null,
 					"order" => "ORDER BY `position` ASC",
@@ -30,15 +33,27 @@
 			);
 			
 			$childrenForumsCatalog = $childrenForums->getCatalog();
+
+			$childrenForumsCount = count($childrenForumsCatalog);
+
+			for ($i = 0; $i < $childrenForumsCount; $i++)
+				$this->childrens[$i] = new self($childrenForumsCatalog[$i]["id"]);
 			
-			return $childrenForumsCatalog;
+			return $this->childrens;
 		}
-		
-		public function getParentForum()
+
+		public function getParentForums($forum = self)
 		{
-			$parentForum = $this->dbConnection->get("SELECT `id`, `title` FROM `" . $this->table . "` WHERE `id` = '" . $this->getAttr("parent_forum") . "'", "singular");
-			
-			return $parentForum;
+			$parentForum = $this->dbConnection->get("SELECT `id`, `parent_forum` FROM `" . $this->table . "` WHERE `id` = '" . $forum->getAttr("parent_forum") . "'", "singular");
+
+			$parent = new self($parentForum["id"]);
+
+			array_push($this->parents, $parent);
+
+			if ($parent->getAttr("parent_forum") != null)
+				$this->getParentForums($parent);
+			else
+				return $this->parents;
 		}
 	}
 ?>
