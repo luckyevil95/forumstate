@@ -37,7 +37,7 @@
 			}
 		}
 		
-		public function set($query, $args)
+		public function set($query, $args = null)
 		{
 			$query = $this->screening($query, $args);
 			

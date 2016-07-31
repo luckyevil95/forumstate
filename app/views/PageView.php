@@ -3,7 +3,7 @@
 	
 	class PageView
 	{
-		public function __construct($page, $metaData, $data)
+		public function __construct($page, $metaData = null, $data = null)
 		{
 			$content = "app/views/page/" . $page . ".php";
 			

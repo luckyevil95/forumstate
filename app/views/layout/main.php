@@ -10,6 +10,7 @@
 		$menuItems = $config["menu"]["guest"];
 ?>
 
+
 <html>
 	<head>
 		<title><?php echo $metaData["title"]; ?></title>
@@ -24,6 +25,10 @@
 		<header>
 			<nav class="topNavbar">
 				<center><?php $mainMenu = new MenuWidget($menuItems, "mainMenu"); ?></center>
+				<?php 
+					if ($currentUser)
+						echo $currentUser->getAttr("login"); 
+				?>
 			</nav>
 		</header>
 		<article>

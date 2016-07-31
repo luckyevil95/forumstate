@@ -1,5 +1,7 @@
 body {
 	margin: 0;
+	background: rgba(251,206,103,0.2);
+	min-height: 99vh;
 }
 
 a {
@@ -13,7 +15,6 @@ header {
 }
 
 article {
-	background: rgba(251,206,103,0.2);
 	display: flex;
 }
 
@@ -102,6 +103,7 @@ article {
 	color: black;
 	line-height: 50px;
     padding-top: 25px;
+	font-size: 23px;
 }
 
 .forumCount {
@@ -174,4 +176,144 @@ article {
 
 .forumChildrens {
 	
+}
+
+.topics {
+	margin-top: 20px;
+}
+
+.topics > b {
+	font-size: 20px;
+}
+
+.topicsTable {
+	width: 1100px;
+	border-spacing: 0 3px;
+}
+
+.topicsTable > tbody > tr {
+	background: linear-gradient(to top, rgba(21,25,70,0.6),rgba(21,25,70,0.2));
+}
+
+.topicsTable > tbody > tr:hover {
+	background: linear-gradient(to top, rgba(21,25,70,0.7),rgba(21,25,70,0.3));
+}
+
+.topicIcon {
+	width: 75px;
+}
+
+.topicIcon > a > img {
+	width: 75px;
+	height: 75px;
+}
+
+.topicTitle {
+	width: 575px;
+	padding-left: 10px;
+}
+
+.topicTitle > a:first-child {
+	color: black;
+	font-size: 18px;
+}
+
+.topicCount {
+	text-align: center;
+	width: 200px;
+}
+
+.topicLastPost {
+	text-align: center;
+	width: 250px;
+}
+
+.topicLastPost > a {
+	color: black;
+}
+
+.topicLastPost > a:hover {
+	text-decoration: underline;
+}
+
+.topicsPagin {
+	margin-top: 20px;
+}
+
+.topicsPagin > a > img {
+	float: left;
+	margin: 0 10px;
+}
+
+.topicsPagin > span {
+	float: left;
+	font-size: 20px;
+}
+
+.paginArrow {
+	height: 25px;
+}
+
+.forumLastPost > a {
+	color: black;
+}
+
+.forumLastPost > a:hover {
+	text-decoration: underline;
+}
+
+.registrationForm {
+	width: 400px;
+    margin: 50px auto;
+    background: yellow;
+}
+
+.registrationForm {
+	padding: 10px;
+	background: linear-gradient(to top,rgba(21,25,70,0.1),rgba(21,25,70,0.3));
+	box-shadow: 0 0 50px rgba(21,25,70,0.5);
+}
+
+.registrationForm > .formTitle {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.registrationForm > .formInput {
+	display: block;
+    margin: 8px auto;
+	font-size: 17px;
+	padding: 5px;
+	box-shadow: 0 0 25px rgba(21,25,70,0.5);
+	border: 1px solid rgba(21,25,70,1);
+	width: 300px;
+}
+
+.registrationForm > .formInput:hover {
+	box-shadow: 0 0 25px rgba(251,206,103,0.5);
+}
+
+.registrationForm > .formSubmit {
+	display: block;
+    margin: 20px auto;
+	padding: 5px 15px;
+	cursor: pointer;
+	background: linear-gradient(to top right, rgba(70,130,180,0.3), rgba(21,25,70,0.7));
+	border: none;
+	font-family: 'Bad Script', cursive;
+	font-weight: bold;
+	font-size: 20px;
+	box-shadow: 0 0 30px rgba(21,25,70,0.5);
+}
+
+.registrationForm > .formSubmit:hover {
+	background: linear-gradient(to top right, rgba(255,255,255,0.3), rgba(21,25,70,0.7));
+	box-shadow: 0 0 30px rgba(255,255,255,0.5);
+}
+
+.formError {
+	color: red;
+	padding: 5px;
 }

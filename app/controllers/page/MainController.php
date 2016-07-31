@@ -30,7 +30,7 @@
 			
 			for ($i = 0; $i < $categoriesCount; $i++)
 			{
-				$forums = new DBCatalog(
+				$forumsID = new DBCatalog(
 					[
 						"table" => "forums",
 						"columns" => "`id`",
@@ -44,7 +44,7 @@
 					]
 				);
 				
-				$forums = $forums->getCatalog();
+				$forums = $forumsID->getCatalog();
 				
 				$countForums = count($forums);
 				

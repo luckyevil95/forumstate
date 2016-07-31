@@ -24,10 +24,8 @@
 		}
 		
 		public function setAttr($attr, $value)
-		{
-			global $config;
-			
-			$this->dbConnection->set("UPDATE `" . $config["db"]["db"] .  "`.`" . $this->table . "` SET `" . $attr . "` = ':value' WHERE `" . $this->table . "`.`id` = ':id'",
+		{	
+			$this->dbConnection->set("UPDATE `" . $this->table . "` SET `" . $attr . "` = ':value' WHERE `" . $this->table . "`.`id` = ':id'",
 				[
 						":value" => $value,
 						":id" => $this->id
