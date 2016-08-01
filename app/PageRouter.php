@@ -14,7 +14,7 @@
 				$controllerName = __NAMESPACE__ . "\controllers\page\MainController";
 			else
 				$controllerName = $this->getControllerName($url["path"]);
-			
+
 			$controller = new $controllerName();
 		}
 		
@@ -22,11 +22,11 @@
 		{
 			foreach (glob("app/controllers/page/*") as $file_or_dir)
 			{
-				$path = stristr(str_replace("Controller", "", $file_or_dir), ".", true);
+				$path = stristr(str_replace(["Controller", "_"], ["", "-"], $file_or_dir), ".", true);
 				$pathArray = explode("/", $path);
 				
 				if (strnatcasecmp(end($pathArray), str_replace("/", "", $url)) == 0)
-					$finalPath = str_replace("/", DIRECTORY_SEPARATOR, $path) . "Controller";
+					$finalPath = str_replace(["/", ".php"], [DIRECTORY_SEPARATOR, ""], $file_or_dir);
 			}
 			
 			if ($finalPath)
